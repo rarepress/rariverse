@@ -1,0 +1,22 @@
+{
+  "name": "rariverse.org",
+  "version": "0.0.1",
+  "description": ">Deploy your own Decentralized NFT Marketplace Contract with One Click",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rarepress/rariverse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rarepress/rariverse/issues"
+  },
+  "homepage": "https://github.com/rarepress/rariverse#readme",
+  "dependencies": {
+    "rarepress": "^0.1.5"
+  }
+}
