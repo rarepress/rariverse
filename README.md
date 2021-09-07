@@ -9,6 +9,6 @@ rariverse is a static HTML website that lets you deploy the [Rarible Decentraliz
 You can reach the website at:
 
 - **Over HTTP:** https://rariverse.org
-- **Over IPFS:** https://ipfs.io/ipfs/bafkreiaungh2lljwaz5v4yaxqk4eypb2x5ebhjfxqh4gtys7a7jmcv5sie
+- **Over IPFS:** https://ipfs.io/ipfs/bafkreid5dmzssttllvjqechu5ajqq4tzmisovlam2gm3wzngbjk4rqvoke
 
 > Note: Try deploying on testnet first.

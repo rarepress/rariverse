@@ -1,0 +1,335 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rariverse</title>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rariverse" />
+<meta name="twitter:description" content="Deploy your own Decentralized NFT Marketplace Contract with One Click" />
+<meta name="twitter:image" content="https://rariverse.org/rariverse.png" />
+<meta property="og:url" content="https://rariverse.org" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Rariverse" />
+<meta property="og:description" content="Deploy your own Decentralized NFT Marketplace Contract with One Click" />
+<meta property="og:image" content="https://rariverse.org/rariverse.png" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js" integrity="sha512-mYc+D+NmmyR0Gcrzyae7q5HguBCS4cBHAsIk7gGhu0/ZyGg4z2YZDjyR2YQA/IMCMTNs4mnlw3vVdERzewpekQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+body {
+  font-family: sans-serif;
+  background: royalblue;
+  color: white;
+}
+h1 {
+  letter-spacing: -1px;
+}
+small {
+}
+#network {
+  text-align: left;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 0;
+  color: greenyellow;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+a {
+  color: rgba(255,255,255,0.8);
+}
+a:hover {
+  color: gold;
+}
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  margin: 50px auto;
+}
+.container input[type=submit], .container input[type=text] {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.container input[type=radio] {
+  display: inline;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+.container input[type=submit] {
+  border: none;
+  background: rgba(0,0,0,0.3);
+  font-weight: bold;
+  color: white;
+  margin-top: 20px;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.row {
+  text-align: left;
+  font-size: 12px;
+  padding: 10px 0;
+  display: flex;
+}
+.group {
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.1);
+}
+#result a {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 5px solid gold;
+  color: gold;
+  font-weight: bold;
+  text-align: center;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+#result .message {
+  padding: 15px 0;
+  text-align: left;
+  font-size: 15px;
+}
+.btns {
+  padding: 10px;
+}
+.btn {
+  text-decoration: none;
+  padding: 5px 10px;
+  background: rgba(0,0,0,0.1);
+  color: white;
+  font-size: 12px;
+  display: inline-block;
+  margin: 10px;
+}
+#logs-header {
+  text-align: left;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 0 10px;
+  font-weight: bold;
+}
+.logs {
+}
+.stretch {
+  flex-grow: 1;
+}
+
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+</style>
+<script>
+class Rariverse {
+  address = {
+    ERC721: {
+      mainnet: "0x6D9DD3547Baf4c190Ab89E0103c363fEaf325ECA",
+      rinkeby: "0xFb7035295a293041Ef8A2D5287A7eAec9C64917a",
+      ropsten: "0xcFDCE8eAC6FEe69137924204CbB6334281b84e7D"
+    },
+    ERC1155: {
+      mainnet: "0x81243681078bEE8e251D02Ee6872b1EAa6DD982A",
+      rinkeby: "0xD910E04A13630d0Bd494f7AAff76D29153b711A8",
+      ropsten: "0x7e7f1C09B2B64f882c3e23D704317f7afF5822B9",
+    }
+  }
+  urls = {
+    mainnet: "https://rarible.com/collection/",
+    rinkeby: "https://rinkeby.rarible.com/collection/",
+    ropsten: "https://ropsten.rarible.com/collection/"
+  }
+  abi = {
+    ERC721: [{"inputs":[{"internalType":"contract IBeacon","name":"_beacon","type":"address"},{"internalType":"address","name":"_transferProxy","type":"address"},{"internalType":"address","name":"_lazyTransferProxy","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"contract BeaconProxy","name":"proxy","type":"address"}],"name":"Create721RaribleProxy","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[],"name":"beacon","outputs":[{"internalType":"contract IBeacon","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"string","name":"baseURI","type":"string"},{"internalType":"string","name":"contractURI","type":"string"}],"name":"createToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}],
+    ERC1155: [{"inputs":[{"internalType":"contract IBeacon","name":"_beacon","type":"address"},{"internalType":"address","name":"_transferProxy","type":"address"},{"internalType":"address","name":"_lazyTransferProxy","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"contract BeaconProxy","name":"proxy","type":"address"}],"name":"Create1155RaribleProxy","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[],"name":"beacon","outputs":[{"internalType":"contract IBeacon","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"string","name":"_symbol","type":"string"},{"internalType":"string","name":"baseURI","type":"string"},{"internalType":"string","name":"contractURI","type":"string"}],"name":"createToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+  };
+  async login () {
+    let accounts = await window.ethereum.send('eth_requestAccounts');
+    window.account = accounts.result[0]
+    return window.account
+  }
+  async update () {
+    await this.setNetwork()
+    this.type = document.querySelector("[name=type]:checked").value;
+    const addr = this.address[this.type][this.network]
+    this.contract = new web3.eth.Contract(this.abi[this.type], addr)
+    await this.renderEvents()
+  }
+  async renderEvents () {
+    this.loading(".logs")
+    let eventName = (this.type === "ERC721" ? "Create721RaribleProxy" : "Create1155RaribleProxy")
+    let events = await this.contract.getPastEvents(eventName, {                               
+      fromBlock: 0,
+      toBlock: "latest",
+    })                              
+    let etherscanPrefix;
+    if (this.network === "mainnet") {
+      etherscanPrefix = "https://etherscan.io/tx/"
+    } else if (this.network === "rinkeby") {
+      etherscanPrefix = "https://rinkeby.etherscan.io/tx/"
+    } else if (this.network === "ropsten") {
+      etherscanPrefix = "https://ropsten.etherscan.io/tx/"
+    }
+    if (events.length > 0) {
+      let html = events.reverse().map((event) => {
+        return `<div class='row'>
+  <a target="_blank" href="${this.urls[this.network] + event.returnValues[0]}">${event.returnValues[0]}</a>
+  <div class='stretch'></div>
+  <a target="_blank" href="${etherscanPrefix}${event.transactionHash}">${event.blockNumber}</a>
+  </div>`
+      }).join("")
+      document.querySelector("#logs-header").innerHTML = "Deployed " + this.type + " contracts"
+      document.querySelector(".logs").innerHTML = html
+    } else {
+      document.querySelector("#logs-header").innerHTML = "Deployed " + this.type + " contracts"
+      document.querySelector(".logs").innerHTML = "<div class='row'>empty</div>"
+    }
+  }
+  loading (selector) {
+    document.querySelector(selector).innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>'
+  }
+  async setNetwork () {
+    let n = await web3.eth.net.getId()
+    if (n === 1) {
+      this.network = "mainnet"
+    } else if (n === 3) {
+      this.network = "ropsten"
+    } else if (n === 4) {
+      this.network = "rinkeby"
+    }
+    document.querySelector("#network").innerHTML = "connected to " + this.network
+  }
+}
+const rariverse = new Rariverse()
+document.addEventListener("DOMContentLoaded", async () => {
+  if (window.ethereum) {
+    window.web3 = new Web3(window.ethereum);
+    window.ethereum.on('accountsChanged', async (accounts) => {
+      await rariverse.update()
+    });
+    window.ethereum.on('chainChanged', async (networkId) => {
+      await rariverse.update()
+    });
+  } else {
+    alert("please install MetaMask")
+    return;
+  }
+  await rariverse.update()
+
+  let els = document.querySelectorAll("input[type=radio]")
+  for(let el of els) {
+    el.addEventListener("click", async (e) => {
+      await rariverse.update()
+    })
+  }    
+
+  document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    await rariverse.login()
+    let name = e.target.querySelector("#name").value.trim()
+    let symbol = e.target.querySelector("#symbol").value.trim()
+    await rariverse.update()
+    if (name && symbol && rariverse.network && rariverse.type) {
+      rariverse.loading("#result")
+      let response = await rariverse.contract.methods.createToken(name, symbol, "ipfs:/" , "").send({
+        from: window.account,
+        value: 0
+      })
+      let created = response.events[0].address
+      let url = rariverse.urls[rariverse.network] + created
+      document.querySelector("#result").innerHTML = `<div class='message'>Contract created at:<br>${created}</div><a href="${url}" target="_blank">VISIT YOUR NFT COLLECTION! &gt;</a>`
+    } else {
+      alert("missing a value")
+    }
+  })
+})
+</script>
+</head>
+<body>
+<div class='container'>
+  <h1>Rariverse</h1>
+  <small>Deploy your own <a href="https://rarible.org">Rarible NFT Contract</a> with one click!</small>
+  <div class='btns'>
+    <a class='btn' href='https://github.com/rarepress/rariverse'>Fork on GitHub</a>
+  </div>
+  <div id='network'></div>
+  <form>
+    <div class='group'>
+      <div class='row'>
+        <input type="radio" id="erc721" name="type" value="ERC721" checked>
+        <label for="erc721">ERC721</label>
+      </div>
+      <div class='row'>
+        <input type="radio" id="erc1155" name="type" value="ERC1155">
+        <label for="erc1155">ERC1155</label>
+      </div>
+    </div>
+    <div class='row'><input type='text' placeholder='name' id='name'></div>
+    <div class='row'><input type='text' placeholder='symbol' id='symbol'></div>
+    <input type='submit' value='create'>
+  </form>
+  <div id='result'>
+  </div>
+  <div id='logs-header'>Deployed Contracts</div>
+  <div class='logs'>
+  </div>
+</div>
+</body>
+</html>

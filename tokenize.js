@@ -11,7 +11,7 @@ const rarepress = new Rarepress();
     type: "ERC721",
     metadata: {
       name: "Rariverse",
-      description: "A 1 of 1 ERC721 NFT that tokenizes the FIRST snapshot of Rariverse, a decentralized website that lets you deploy a decentralized NFT marketplace contract to Ethereum.",
+      description: "A 1 of 1 NFT that tokenizes the FIRST snapshot of Rariverse, a decentralized website that lets you deploy a decentralized NFT marketplace contract to Ethereum.",
       image: "/ipfs/" + image_cid,
       attributes: [{
         trait_type: "HTML over IPFS Gateway",
