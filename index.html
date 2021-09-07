@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let name = e.target.querySelector("#name").value.trim()
     let symbol = e.target.querySelector("#symbol").value.trim()
     await rariverse.update()
-    if (name && symbol && network && type) {
+    if (name && symbol && rariverse.network && rariverse.type) {
       loading("#result")
       let response = await rariverse.contract.methods.createToken(name, symbol, "ipfs:/" , "").send({
         from: window.account,
