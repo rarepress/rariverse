@@ -8,11 +8,10 @@ const rarepress = new Rarepress();
   let code_cid = await rarepress.fs.add(codeBuffer)
   let image_cid = await rarepress.fs.add(imageBuffer)
   let token = await rarepress.token.create({
-    type: "ERC1155",
-    supply: 7,
+    type: "ERC721",
     metadata: {
       name: "Rariverse",
-      description: "A 7 of 7 ERC1155 NFT that tokenizes the FIRST snapshot of Rariverse, a decentralized website that lets you deploy a decentralized NFT marketplace contract to Ethereum.",
+      description: "A 1 of 1 ERC721 NFT that tokenizes the FIRST snapshot of Rariverse, a decentralized website that lets you deploy a decentralized NFT marketplace contract to Ethereum.",
       image: "/ipfs/" + image_cid,
       attributes: [{
         trait_type: "HTML over IPFS Gateway",
